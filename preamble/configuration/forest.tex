@@ -1,0 +1,53 @@
+%Short hands for discrete math symbols
+\newcommand{\closed}{\ensuremath{\times}}
+\newcommand{\open}{\ensuremath{\bigcirc}}
+
+\newcommand{\F}{\ensuremath{\mathtt{F}}}
+\newcommand{\T}{\ensuremath{\mathtt{T}}}
+
+\renewcommand{\iff}{\leftrightarrow}
+
+%Short hands for e.g. true logical OR for use in semantic tableaus
+% Slightly modified short hands originally by Thomas Bolander.
+\newcommand{\lorf}{\ensuremath{\lor\F}}
+\newcommand{\lort}{\ensuremath{\lor\T}}
+\newcommand{\landf}{\ensuremath{\land\F}}
+\newcommand{\landt}{\ensuremath{\land\T}}
+\newcommand{\tof}{\ensuremath{\to\!\F}}
+\newcommand{\tot}{\ensuremath{\to\!\T}}
+\newcommand{\ifff}{\ensuremath{\iff\!\F}}
+\newcommand{\ifft}{\ensuremath{\iff\!\T}}
+\newcommand{\negf}{\ensuremath{\neg\F}}
+\newcommand{\negt}{\ensuremath{\neg\T}}
+\newcommand{\allf}{\ensuremath{\forall\F}}
+\newcommand{\allt}{\ensuremath{\forall\T}}
+\newcommand{\exf}{\ensuremath{\exists\F}}
+\newcommand{\ext}{\ensuremath{\exists\T}}
+
+%Default styling for semantic tableaus
+\newcommand{\semantictableau}[1]{%
+    \begin{forest}
+        for tree={fit=rectangle, align=center, base=top, s sep=3em, l sep=5ex}
+        #1
+    \end{forest}
+}
+
+%Unable to make use of optional parameters for ID
+% as using brackets inside of package "forest" makes it cry
+\newcommand{\formula}[3]{%
+    $#1$%
+    \hspace{0.26em}\color{grey-base}{:}\hspace{0.6em}%
+    {\ifthenelse{\equal{#2}{\T}}{\color{green-dark}}{\color{red-dark}}#2}%
+    \ifblank{#3}{}{{\hspace{0.8em}\scriptsize \color{blue-dark}{#3}}}%
+}
+
+\newcommand{\formulahl}[3]{\formula{\color{yellow-dark}{#1}}{#2}{#3}}
+
+%Default options for forest
+\forestset{%
+    expand/.style n args=3{%
+        edge label={%
+            node [midway, auto, above #3, font=\scriptsize] {\color{blue-black}{#1} \hspace{0.6em} #2}%
+        },
+    },
+}

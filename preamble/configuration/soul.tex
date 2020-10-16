@@ -1,0 +1,11 @@
+\makeatletter
+ \def\SOUL@hlpreamble{%
+ \setul{}{3ex}%         Height of highlight
+ \let\SOUL@stcolor\SOUL@hlcolor
+ \SOUL@stpreamble
+ }
+\makeatother
+
+%Use for inline code references, external names, etc.
+%The kernels '\,' are there to ensure unbreakable horizontal whitespace
+\newcommand{\rawref}[1]{{\sethlcolor{white-near}\ttfamily\small\color{red-dark}\hl{\,\,#1\,\,}}}

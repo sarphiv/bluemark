@@ -1,0 +1,536 @@
+\chapter{Chapter}
+The following texts are instructions and examples on how to use this template.
+This template is made by \href{https://github.com/sarphiv/}{github.com/sarphiv} via various examples from \href{https://tex.stackexchange.com}{tex.stackexchange.com}
+and its structure is inspired by \rawref{Laursen's XeLaTeX thesis template}.
+It is not advised to use this template as this is literally sarphiv's first LaTeX project - a mess and major bugs should therefore be expected.
+
+\section{Section}
+If chapters such as the preface, colophon, and/or acknowledgments are unnecessary
+they can be commented out in \lstinline|main.tex|.
+
+The headings above and below are examples of the different depths that have been defined.
+
+Go into the \rawref{settings.tex} file now and setup appropriate document metadata and properties.
+A lot of the values in there are placeholders and should therefore never make it into the final draft.
+
+\subsection{Subsection}
+Below you can find the most commonly used files/locations.
+\begin{itemize}
+    \item \rawref{main.tex}
+    \item \rawref{settings.tex}
+    \item \rawref{bibliography.bib}
+    \item \rawref{chapters/}
+    \item \rawref{appendices/}
+    \item \rawref{media/}
+\end{itemize}
+
+\subsubsection{Subsubsection}
+The above list was generated with the \rawref{itemize} environment.
+Use the \rawref{enumerate} environment to enumerate items.
+Each item needs to be prefixed with \rawref{\textbackslash item XXXX}
+where \rawref{XXXX} is the item.
+
+\begin{enumerate}
+    \item First
+    \item Second item with enumerated subitems
+    \begin{enumerate}
+        \item First subitem
+        \item Second subitem with a really long text that should break 
+            this line at some point so we can see what that looks like
+    \end{enumerate}
+    \item Third item with itemized subitems
+    \begin{itemize}
+        \item Some item
+        \item Some other item
+    \end{itemize}
+\end{enumerate}
+
+An empty line break after \rawref{\textbackslash end} statement 
+will cause the text after a list to be treated as a new paragraph.
+
+Lists can have their label style changed by supplying optional argument e.g. \rawref{\lbrack label=\textbackslash roman*\rbrack} for enumerations.
+
+\paragraph{Paragraph}
+Arbitrary text can be generated with \rawref{\textbackslash lipsum[x][y]}
+where \rawref{x} is the lorem ipsum paragraph (index or range) you want.
+And where \rawref{y} is the sentence you want (index or range) 
+e.g. \rawref{\textbackslash lipsum[1][1-7]}
+
+\subparagraph{Subparagraph}
+\lipsum[1][1-7]
+
+
+\section{More examples}
+The following are more examples and instructions on how to use various features.
+
+\subsection{Text styles and families}
+Text can have different styles and families.
+
+\textit{The italic font style is used to hint at a different meaning}
+and can be enabled with \rawref{\textbackslash textit\{\dots\}}.
+
+\textbf{The bold font style is used for emphasis}
+and can be enabled with \rawref{\textbackslash textbf\{\dots\}}.
+
+\textsf{The sans serif family is used for document related markers}
+and can be enabled with \rawref{\textbackslash textsf\{\dots\}}.
+
+\texttt{The monospace (typewriter) family is used for code}\\
+\texttt{and external references}
+and can be enabled with \rawref{\textbackslash texttt\{\dots\}}.
+The monospace font does not break at lines correctly when used this way.
+
+\textmd{The normal font style (medium series) is the default font style}
+and can be enabled with \rawref{\textbackslash textmd\{\dots\}}
+
+\subsubsection{Enabling locally for an environment}
+To locally enable a font style or family within an environment use \rawref{\textbackslash XXYY},
+where \rawref{XX} is the two letter code for the style or family you want,
+and where \rawref{YY} is either
+\rawref{series} for styles
+or \rawref{family} for  families.
+An example could be \rawref{\textbackslash bfseries} for the bold style.
+
+
+\subsection{Math
+    \texorpdfstring
+        {$\frac{\pi}{2} = \int_{-1}^{1} \sqrt{1-x^2}dx$}
+        {equation pi calculated by integral}
+}
+Math in headings need to be surrounded by \rawref{\textbackslash texorpdfstring\{XXXX\}\{YYYY\}},
+where \rawref{XXXX} is the math equation
+and \rawref{YYYY} is the replacement to go into the PDF metadata table of contents.
+
+Inline math can be input with \rawref{\$1+2\$}.
+While standalone math equations can be input with the
+\rawref{equation}, \rawref{multline}, \rawref{align}, and \rawref{gather} environments.
+Adding an asterisk removes equation numbering e.g. \rawref{align*}.
+Nest the \rawref{split} environment inside the others to group equations into one number.
+\begin{equation}
+    x = \mathcal{X}, \mathtt{x}, \mathbf{x}, \mathit{x},
+        x_{1_{2}}^{1^{2}}
+    \cdot var \times \text{string}
+    %The '~' character is used to force the creation of a space
+    %The '\!' character is used to force the creation of a small negative space
+    ,~x \in \{y \in \mathbb{R}~|~y^2 = 0\}
+\end{equation}
+\begin{multline}
+    p(x) = 3x^6 + 14x^5y + 590x^4y^2 + 19x^3y^3\\
+        - 12x^2y^4 - 12xy^5 + 2y^6\\
+        + 3x^6 + 14x^5y + 590x^4y^2
+\end{multline}
+\begin{align}
+    %Split environment can be used to keep alignment
+    % but while still grouping equation numbers
+    \begin{split}
+        \label{math-grouped-equation}
+        x^{23} = ~&y + 97410\\
+        0 = x - &y + \frac{c}{\sqrt{x}}
+    \end{split}\\
+    f(x) = \int_b^a c + &y dx, ~\text{aligned on } y
+\end{align}
+\begin{gather*}
+    2x - 5y =  8 \\
+    3x^2 + 9y =  3a + c \\
+    P(\vec{k}) = \int_a^b e^{i\vec{k}\cdot\vec{R}} P(\vec{R}) d\vec{R}
+\end{gather*}
+Equations were displayed in the order introduced.
+The \rawref{split} environment was nested for \cref{math-grouped-equation}.
+The \rawref{gather*} environment was used for the last equations
+to demonstrate unnumbered equations.
+Beware of blank lines when formatting text and equations.
+
+
+\subsection{Columns}
+The body can be split into columns with the \rawref{multicols} environment.
+This environment requires an argument specifying the amount of columns e.g.
+\rawref{\textbackslash begin\{multicols\}\{2\}} for two columns.
+
+An asterisk version of the environment also exists.
+This version will disable a feature that makes both columns the same height
+e.g. first column being 100\% of the page height and second column 50\% of the page height,
+instead of \textbf{both} being 75\% of the page height.
+
+\begin{multicols}{2}
+    \lipsum[2]
+\end{multicols}
+
+
+\subsection{Notes}
+Footnotes%
+\footnote{Letters like æ, ø, å can be used in the document. }
+can be made with \rawref{\textbackslash footnote\{\dots\}}.
+Footnotes can also be really long%
+\footnote{This is a really long footnote that will encounter a line break to show how footnotes wrap. The wrap should be happening about now}.
+If the footnote source code is placed on a new line,
+a comment mark \rawref{\%} should be placed at the end of the original line
+to ensure the footnote reference is placed the close to the source.
+The comment mark causes the new line character to be ignored.
+
+\label{label-example} %References the above subsection - not this exact place
+
+Sources\footcite[23]{DUMMY:1} can be cited with
+\rawref{\textbackslash footcite[PPPP]\{XXXX\}}
+where \rawref{PPPP} is the optional page number in the source,
+and \rawref{XXXX} is the source key/label/ID\footcite[11]{DUMMY:2}.
+
+
+\subsection{References}
+Labels can be used to mark areas that can be referenced.
+The label should be somewhere after the area that should be referenced e.g. a caption for a figure.
+Labels can be placed with \rawref{\textbackslash label\{XXXX\}},
+where \rawref{XXXX} is the label ID.
+To reference a label such as \cref{label-example} use \rawref{\textbackslash cref\{XXXX\}},
+where \rawref{XXXX} is the label ID.
+The area type referenced will automatically be inferred.
+
+
+\subsection{Markup}
+External or inline code \rawref{references} can be made with 
+\rawref{\textbackslash rawref\{XXXX\}} where \rawref{XXXX} is the reference. 
+Brackets like \rawref{[} and \rawref{]} should \textbf{NOT} be escaped with '\textbackslash',
+the brackets can be specified literally.
+
+\begin{highlightbox*}{Highlighted box}
+    Highlight boxes are also supported and can be accessed via the two environments
+    \rawref{highlightbox} and \rawref{highlightbox*}.
+
+    The asterisk version requires a title argument e.g.
+    \rawref{\textbackslash begin\{highlightbox*\}\{XXXX\}}
+    where \rawref{XXXX} is the title of the box.
+\end{highlightbox*}
+
+The highlight boxes can also be used to highlight equations.
+\begin{highlightbox}
+\begin{equation}
+    1+2\neq 4
+\end{equation}
+\end{highlightbox}
+
+
+\subsection{Figures}
+Graphics can be included with code such as
+\begin{figure}
+    \centering
+    %There should not be a space between the ']' and the '{',
+    % it is there to allow an automatic linebreak
+    \begin{lstlisting}
+\begin{figure}
+    \centering
+    \includegraphics[width=0.9\textwidth] {media/missing-graphic-rectangle.pdf}
+
+    \caption{Demonstration of missing graphic}
+    \label{missing-graphic-rectangle-example}
+\end{figure}
+    \end{lstlisting}
+
+    \caption{Code example for missing graphic example}
+    \label{code-missing-graphic-rectangle-example}
+\end{figure}
+
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.9\textwidth]{media/missing-graphic-rectangle.pdf}
+
+    \caption{Demonstration of missing graphic}
+    \label{missing-graphic-rectangle-example}
+\end{figure}
+
+\begin{figure}
+    \centering
+    \begin{subfigure}{0.28\textwidth}
+        \includegraphics[width=\textwidth] {media/missing-graphic-square.pdf}
+        \caption{First subfigure}
+    \end{subfigure}
+    \begin{subfigure}{0.28\textwidth}
+        \includegraphics[width=\textwidth] {media/missing-graphic-square.pdf}
+        \caption{Second subfigure}
+    \end{subfigure}
+    \begin{subfigure}{0.28\textwidth}
+        \includegraphics[width=\textwidth] {media/missing-graphic-square.pdf}
+        \caption{Third subfigure}
+    \end{subfigure}
+
+    \begin{subfigure}{0.855\textwidth}
+        \includegraphics[width=\textwidth] {media/missing-graphic-rectangle.pdf}
+        \caption{Fourth subfigure}
+    \end{subfigure}
+
+    \caption{Demonstration of missing graphic subfigures with a really long caption that should cause a line break}
+    \label{missing-graphic-subfigures-example}
+\end{figure}
+
+The output of the code in \cref{code-missing-graphic-rectangle-example}
+is shown in \cref{missing-graphic-rectangle-example}.
+Subfigures can be created via the example shown in \cref{code-missing-graphic-subfigures-example}.
+The \rawref{\textbackslash label} can be omitted if unnecessary.
+To create todo/(fix me) figures the right way, read \cref{fixmes-section}.
+
+Code examples and graphics can be used without figures.
+Although, figures help organize, reference, and describe media,
+so please use them.
+
+
+\subsection{Tikz}
+\begin{figure}
+    \centering
+    \begin{tikzpicture}
+        \draw [red-base, dashed] (-2.5, 2.5)
+            rectangle (-1.5, 0)
+            node [grey-dark, above] {hi there};
+        \draw [green-base, thick]
+            (0, 0)
+            to [out=-45, in=-180] (3, 0)
+            to [out=0, in=-80] (4, 2)
+            to [out=100, in=135] (0, 0);
+    \end{tikzpicture}
+
+    \caption{Picture drawn with tikz}
+    \label{tikz-example}
+\end{figure}
+
+Pictures can be drawn with the \rawref{tikz} package.
+To generate the above masterpiece \cref{tikz-example} the following code was used
+
+%Language can be specified as an optional argument.
+% A default language is specified in the preamble.
+\begin{lstlisting}[language=tex]
+\begin{figure}
+    \centering
+    \begin{tikzpicture}
+        \draw [red-base, dashed] (-2.5, 2.5)
+            rectangle (-1.5, 0)
+            node [grey-dark, above] {hi there};
+        \draw [green-base, thick]
+            (0, 0)
+            to [out=-45, in=-180] (3, 0)
+            to [out=0, in=-80] (4, 2)
+            to [out=100, in=135] (0, 0);
+    \end{tikzpicture}
+
+    \caption{Picture drawn with tikz
+\end{figure}
+\end{lstlisting}
+
+
+The \rawref{out} key describes the angle going \textit{out} of a point,
+such as in the example going out of $(0, 0)$
+The \rawref{in} key describes the angle going \textit{in} to a point,
+such as in the example going in to $(3, 0)$
+
+\subsection{Semantic tabelau}
+\begin{figure}
+    \centering
+
+    \semantictableau{
+        [
+            \formula{\forall x (P(x) \lor Q(x))}{\T}{1}\\
+            \formula{\forall x P(x) \lor \forall x Q(x)}{\F}{2}
+            [
+                \formula{\forall x P(x)}{\F}{3}\\
+                \formula{\forall x Q(x)}{\F}{4}
+                ,expand={2}{\lorf}{left}
+                [
+                    \formulahl{P(c_0)}{\F}{}\\
+                    \formulahl{Q(c_1)}{\F}{}
+                    ,expand={3, 4}{\allf, \allf}{left}
+                    [
+                        \formula{P(x) \lor Q(x)}{\T}{5}\\
+                        \formula{P(c_0) \lor Q(c_0)}{\T}{6}\\
+                        \formula{P(c_1) \lor Q(c_1)}{\T}{7}
+                        ,expand={1}{\allt}{left}
+                        [
+                            \formula{P(x)}{\T}{}\\
+                            ,expand={5}{\lort}{left}
+                        ]
+                        [
+                            \formula{Q(x)}{\T}{}\\
+                            [
+                                \formulahl{P(c_0)}{\T}{}\\
+                                \closed
+                                ,expand={6}{\lort}{left}
+                            ]
+                            [
+                                \formula{Q(c_0)}{\T}{}
+                                [
+                                    \formula{P(c_1)}{\T}{}\\
+                                    \open
+                                    ,expand={7}{\lort}{left}
+                                ]
+                                [
+                                    \formulahl{Q(c_1)}{\T}{}\\
+                                    \closed
+                                ]
+                            ]
+                        ]
+                    ]
+                ]
+            ]
+        ]
+    }
+    
+    \caption{Semantic Tableau proving $\forall x (P(x) \lor Q(x)) \not\vdash_{ST} \forall x P(x) \lor \forall x Q(x)$}
+    \label{semantic-tableau-example}
+\end{figure}
+
+The code for the semantic tableau \cref{semantic-tableau-example} can be seen at \cref{code-semantic-tableau-example}.
+Remember the \rawref{=} sign after \rawref{,expand} and to have the correct amount of arguments. 
+Empty brackets \rawref{[]} are not allowed.
+
+
+\subsection{Tables}
+Tables can be created with the \rawref{longtable} environment.
+This environment is used to enable tables spanning multiple pages if necessary.
+
+%The second argument describes how many columns there are.
+% The 'c' centers the first column,
+% the 'l' left aligns the right column ('r' to right align),
+% the 'S' aligns numbers by decimal point in the middle column
+% the '|' creates a vertical line between two columns,
+% and '||' creates a double vertical line between two columns,
+% and 'p{NNNN}' where 'NNNN' is the width 
+% vertically aligns text to the top to use with long text.
+\begin{longtable}{c|S|l}
+    %The new line is necessary when caption is at the top
+    \caption{Small table example}\\
+    %Label must be after caption to refer to table
+    \label{small-table-example}
+
+    \textbf{First} & \textbf{Second} & \textbf{Third}\\
+    \hline
+    \endfirsthead
+
+    \textbf{First} & \textbf{Second} & \textbf{Third}\\
+    \hline
+    \endhead
+
+    %Normal entry
+    Alpha & 2.102 & USD\\
+
+    %Multicolumn centered entry with right vertical line and horizontal lines
+    \hline
+    Bravo & \multicolumn{2}{c|}{NOTE}\\
+    \hline
+
+    %Multi-row entry where '*' specifies to auto-fit the width of the multiple rows
+    Charlie & 213.21 & \multirow{2}{*}{ZERO}\\
+    Delta & 1231\\
+    
+    %Colored cell with partial horizontal lines above and below
+    \cline{2-3}
+    Echo & \cellcolor{blue-base}\color{white-pure}132.193 & EUR\\
+    \cline{1-2}
+
+    %Multi-column, multi-row seems to need all this to ensure lines are drawn correctly
+    \multicolumn{2}{c|}{\multirow{2}{*}{Foxtrot}} & \multirow{2}{*}{ETH}\\
+    \multicolumn{2}{c|}{}\\
+
+    %Double horizontal line to make a thicker horizontal line
+    \hline
+    \hline
+    Golf & 12313.424719 & DOGE
+\end{longtable}
+
+As shown, captions can be placed at the top of figures. 
+To see the source code for \cref{small-table-example} see \cref{code-small-table-example}.
+
+%To color a column '>{\columncolor{XXXX}}', where 'XXXX' is the color,
+% must be placed before the alignment letter for the column
+\begin{longtable}{r|>{\columncolor{white-near}}l}
+    \caption{Big table example}\\
+    \label{big-table-example}
+
+    %Everything before \endfirsthead is used as the first header
+    \textbf{First} & \textbf{Second}\\
+    \hline
+    \endfirsthead
+
+    %Everything after \endfirsthead but before \endhead
+    % will be used as the headers for when the table reaches a new page.
+    \textbf{First} & \textbf{Second}\\
+    \hline
+    \endhead
+    
+    1 & Alpha\\
+    2 & Bravo\\
+    3 & Charlie\\
+    4 & Delta\\
+    %To color a row '\rowcolor{XXXX}', where 'XXXX' is the color, must prefix the row.
+    \rowcolor{yellow-dark}\color{white-pure}5 & Echo\\
+    6 & Foxtrot\\
+    7 & Golf\\
+    8 & Hotel\\
+    9 & India\\
+    10 & Juliett\\
+    11 & Kilo\\
+    12 & Lima\\
+    13 & Mike\\
+    14 & November\\
+    15 & Oscar\\
+    16 & Quebec\\
+    17 & Romeo\\
+    18 & Sierra\\
+    19 & Tango\\
+    20 & Uniform\\
+    21 & Victor\\
+    22 & Whiskey\\
+    23 & X-ray\\
+    24 & Yankee\\
+    25 & Zulu\\
+\end{longtable}
+
+The big table example \cref{big-table-example} demonstrates table spanning multiple pages.
+To learn more about setting up headers for such a case, coloring columns, and coloring rows,
+see \cref{code-big-table-example}.
+
+
+\subsection{Todos/fixmes}
+\label{fixmes-section}
+In the settings file \rawref{settings.tex} fix me notes can be enabled/disabled.
+Remember to disable in the final version of the document.
+
+The first page is a list of fix me notes. 
+A fix me can be placed
+\fxnote{A note about something to be done}
+with \rawref{\textbackslash fxnote\{XXXX\}} where \rawref{XXXX} is the text.
+
+There are four different levels of severity for fix mes.
+The \rawref{note} level is the lowest priority\fxnote{Note priority}.
+The next level up is the \rawref{warning} level\fxwarning{Warning priority}.
+The second highest level is the \rawref{error} level\fxerror{Error priority}.
+The highest level is the \rawref{fatal} level\fxfatal{Fatal priority}, 
+which makes compilation fail if present
+and fix mes' state is set to \rawref{final} mode (a.k.a. \rawref{disabled}).
+
+\begin{enumerate}
+    \item \rawref{\textbackslash fxnote\{XXXX\}}
+    \item \rawref{\textbackslash fxwarning\{XXXX\}}
+    \item \rawref{\textbackslash fxerror\{XXXX\}}
+    \item \rawref{\textbackslash fxfatal\{XXXX\}}
+\end{enumerate}
+
+A global fix me note%
+\footnote{\label{all-severity-levels-supported}Other severity levels are also supported}
+can be placed with 
+\rawref{\textbackslash fxglobalnote\{XXXX\}} where \rawref{XXXX} is the text.
+These notes should ideally be placed in the preamble.
+
+\begin{figure}
+    \centering
+    \fxgraphicrectwarning[width=0.7\textwidth]{Add missing rectangle graphic}
+    
+    \caption{A missing rectangle graphic example}
+\end{figure}
+
+Code examples for placing missing figures can be seen at
+\cref{code-missing-graphic-fix-me-example}.
+Instead of using the 
+\rawref{\textbackslash includegraphics[XXXX]\{ZZZZ\}} 
+command, use either 
+\rawref{\textbackslash fxgraphicrectnote[XXXX]\{YYYY\}}
+or \rawref{\textbackslash fxgraphicsqnote[XXXX]\{YYYY\}},
+where \rawref{XXXX} are options for the graphic such as width,
+\rawref{YYYY} is the fix me text,
+and \rawref{ZZZZ} is the graphic location which is not needed.
+The point mentioned in \cref{all-severity-levels-supported} still stands.

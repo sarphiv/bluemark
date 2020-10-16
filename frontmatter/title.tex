@@ -1,0 +1,43 @@
+{
+    \thispagestyle{empty}
+
+    \savegeometry{memoirgeometry}
+    \newgeometry{left=4em,right=4em,top=2em,bottom=4em}
+
+    \begin{flushleft}        
+        \sffamily\footnotesize\color{grey-dark}
+        
+        \thepapertype \hspace*{\fill} \thepaperdate
+        
+        \vspace*{20ex}
+        
+        \LARGE\bfseries\color{black-pure}
+        \thepapertitle\hspace*{0.1em}\tcbox[box align=center, height=0.26ex, nobeforeafter, colback=blue-base, colframe=blue-base, size=small, arc=0.03em,outer arc=0.03em]{\hspace*{0.08 em}}
+        
+        \Large\mdseries
+        \thepapersubtitle
+    
+        \vspace*{\fill}
+    
+        \Large
+        \thepaperauthor\quad
+        \small\color{grey-dark}
+        \thepaperauthorid
+
+        \vspace*{8ex}
+
+        \begin{minipage}{0.7\textwidth}
+            \small\bfseries\color{black-pure}
+            \thepapershortgroup\\
+            \footnotesize\mdseries\color{grey-dark}
+            \thepaperfullgroup
+        \end{minipage}
+        \hspace*{\fill}
+        \begin{minipage}{0.05\textwidth}
+            \includegraphics[width=\textwidth]{media/dtu-logo-black-rgb.pdf}
+        \end{minipage}
+    \end{flushleft}
+
+    \clearpage
+    \loadgeometry{memoirgeometry}
+}

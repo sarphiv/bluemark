@@ -1,0 +1,32 @@
+\input{preamble/import}
+
+\fxglobalfatal{Set up settings and delete line in main.tex}
+
+
+\begin{document}
+    \printlistoffixmes
+
+    \frontmatter
+    \include{frontmatter/title}
+    \include{frontmatter/colophon}
+
+    \include{frontmatter/summary}
+    \include{frontmatter/preface}
+    \include{frontmatter/acknowledgements}
+
+    \clearpage
+    \printtableofcontents
+    
+
+    \mainmatter
+    \include{chapters/instructions}
+
+
+    \appendix
+    \include{appendices/code-examples}
+
+
+    \backmatter
+    \printbibliography
+    \printlistoffigurestables
+\end{document}

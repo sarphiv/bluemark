@@ -1,0 +1,230 @@
+\chapter{Code examples}
+The following is a code example included as an appendix.
+It is referenced just like any other reference described in \cref{label-example}.
+
+\begin{figure}
+    \centering
+    Hello there
+    \caption{Small text figure to show figure numbering in appendixes}
+    \label{}
+\end{figure}
+
+
+\section{Code example for missing graphic subfigures example}
+\label{code-missing-graphic-subfigures-example}
+%There should not be a space between the ']' and the '{',
+% it is there to allow an automatic linebreak in the source code showcase
+\begin{lstlisting}
+\begin{figure}
+    \centering
+    \begin{subfigure}{0.28\textwidth}
+        \includegraphics[width=\textwidth] {media/missing-graphic-square.pdf}
+        \caption{First subfigure}
+    \end{subfigure}
+    \begin{subfigure}{0.28\textwidth}
+        \includegraphics[width=\textwidth] {media/missing-graphic-square.pdf}
+        \caption{Second subfigure}
+    \end{subfigure}
+    \begin{subfigure}{0.28\textwidth}
+        \includegraphics[width=\textwidth] {media/missing-graphic-square.pdf}
+        \caption{Third subfigure}
+    \end{subfigure}
+
+    \begin{subfigure}{0.855\textwidth}
+        \includegraphics[width=\textwidth] {media/missing-graphic-rectangle.pdf}
+        \caption{Fourth subfigure}
+    \end{subfigure}
+    
+    \caption{Demonstration of missing graphic subfigures  with a really long caption that should cause a line break}
+    \label{missing-graphic-subfigures-example}
+\end{figure}
+\end{lstlisting}    
+
+
+\section{Code for semantic tableau example}
+\label{code-semantic-tableau-example}
+\begin{lstlisting}
+\begin{figure}
+    \centering
+
+    \semantictableau{
+        [
+            \formula{\forall x (P(x) \lor Q(x))}{\T}{1}\\
+            \formula{\forall x P(x) \lor \forall x Q(x)}{\F}{2}
+            [
+                \formula{\forall x P(x)}{\F}{3}\\
+                \formula{\forall x Q(x)}{\F}{4}
+                ,expand={2}{\lorf}{left}
+                [
+                    \formulahl{P(c_0)}{\F}{}\\
+                    \formulahl{Q(c_1)}{\F}{}
+                    ,expand={3, 4}{\allf, \allf}{left}
+                    [
+                        \formula{P(x) \lor Q(x)}{\T}{5}\\
+                        \formula{P(c_0) \lor Q(c_0)}{\T}{6}\\
+                        \formula{P(c_1) \lor Q(c_1)}{\T}{7}
+                        ,expand={1}{\allt}{left}
+                        [
+                            \formula{P(x)}{\T}{}\\
+                            ,expand={5}{\lort}{left}
+                        ]
+                        [
+                            \formula{Q(x)}{\T}{}\\
+                            [
+                                \formulahl{P(c_0)}{\T}{}\\
+                                \closed
+                                ,expand={6}{\lort}{left}
+                            ]
+                            [
+                                \formula{Q(c_0)}{\T}{}
+                                [
+                                    \formula{P(c_1)}{\T}{}\\
+                                    \open
+                                    ,expand={7}{\lort}{left}
+                                ]
+                                [
+                                    \formulahl{Q(c_1)}{\T}{}\\
+                                    \closed
+                                ]
+                            ]
+                        ]
+                    ]
+                ]
+            ]
+        ]
+    }
+    
+    \caption{Semantic Tableau proving $\forall x (P(x) \lor Q(x)) \not\vdash_{ST} \forall x P(x) \lor \forall x Q(x)$}
+    \label{semantic-tableau-example}
+\end{figure}
+\end{lstlisting}
+
+\section{Code for small table example}
+\label{code-small-table-example}
+
+\begin{lstlisting}[language=tex]
+%The second argument describes how many columns there are.
+% The 'c' centers the first column,
+% the 'l' left aligns the right column ('r' to right align),
+% the 'S' aligns numbers by decimal point in the middle column
+% the '|' creates a vertical line between two columns,
+% and '||' creates a double vertical line between two columns,
+% and 'p{NNNN}' where 'NNNN' is the width 
+% vertically aligns text to the top to use with long text.
+\begin{longtable}{c|S|l}
+    %The new line is necessary when caption is at the top
+    \caption{Small table example}\\
+    %Label must be after caption to refer to table
+    \label{small-table-example}
+
+    \textbf{First} & \textbf{Second} & \textbf{Third}\\
+    \hline
+    \endfirsthead
+
+    \textbf{First} & \textbf{Second} & \textbf{Third}\\
+    \hline
+    \endhead
+
+    %Normal entry
+    Alpha & 2.102 & USD\\
+
+    %Multicolumn centered entry with right vertical line and horizontal lines
+    \hline
+    Bravo & \multicolumn{2}{c|}{NOTE}\\
+    \hline
+
+    %Multi-row entry where '*' specifies to autofit the width of the multiple rows
+    Charlie & 213.21 & \multirow{2}{*}{ZERO}\\
+    Delta & 1231\\
+    
+    %Colored cell with partial horizontal lines above and below
+    %(cell/row/column)color 
+    \cline{2-3}
+    Echo & \cellcolor{blue-base}\color{white-pure}132.193 & EUR\\
+    \cline{1-2}
+
+    %Multi-column, multi-row seems to need all this to ensure lines are drawn correctly
+    \multicolumn{2}{c|}{\multirow{2}{*}{Foxtrot}} & \multirow{2}{*}{ETH}\\
+    \multicolumn{2}{c|}{}\\
+
+    %Double horizontal line to make a thicker horizontal line
+    \hline
+    \hline
+    Hotel & 12313.424719 & DOGE
+\end{longtable}
+\end{lstlisting}
+
+
+\section{Code for big table example}
+\label{code-big-table-example}
+
+\begin{lstlisting}[language=tex]
+%To color a column '>{\columncolor{XXXX}}', where 'XXXX' is the color,
+% must be placed before the alignment letter for the column
+\begin{longtable}{r|>{\columncolor{white-near}}l}
+    \caption{Big table example}\\
+    \label{big-table-example}
+
+    %Everything before \endfirsthead is used as the first header
+    \textbf{First} & \textbf{Second}\\
+    \hline
+    \endfirsthead
+
+    %Everything after \endfirsthead but before \endhead
+    % will be used as the headers for when the table reaches a new page.
+    \textbf{First} & \textbf{Second}\\
+    \hline
+    \endhead
+    
+    1 & Alpha\\
+    2 & Bravo\\
+    3 & Charlie\\
+    4 & Delta\\
+    %To color a row '\rowcolor{XXXX}', where 'XXXX' is the color, must prefix the row.
+    \rowcolor{yellow-dark}\color{white-pure}5 & Echo\\
+    6 & Foxtrot\\
+    7 & Golf\\
+    8 & Hotel\\
+    9 & India\\
+    10 & Juliett\\
+    11 & Kilo\\
+    12 & Lima\\
+    13 & Mike\\
+    14 & November\\
+    15 & Oscar\\
+    16 & Quebec\\
+    17 & Romeo\\
+    18 & Sierra\\
+    19 & Tango\\
+    20 & Uniform\\
+    21 & Victor\\
+    22 & Whiskey\\
+    23 & X-ray\\
+    24 & Yankee\\
+    25 & Zulu\\
+\end{longtable}
+\end{lstlisting}
+
+
+\section{Code for missing graphic fix me example}
+\label{code-missing-graphic-fix-me-example}
+
+\subsection{Missing rectangle graphic}
+\begin{lstlisting}[language=tex]
+\begin{figure}
+    \centering
+    \fxgraphicrectwarning{Add missing rectangle graphic}
+    
+    \caption{A missing rectangle graphic example}
+\end{figure}
+\end{lstlisting}
+
+\subsection{Missing square graphic}
+\begin{lstlisting}[language=tex]
+\begin{figure}
+    \centering
+    \fxgraphicsqrewarning{Add missing square graphic}
+    
+    \caption{A missing square graphic example}
+\end{figure}
+\end{lstlisting}
