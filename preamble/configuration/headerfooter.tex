@@ -1,0 +1,60 @@
+
+%Inspired by Laursen's XeLaTeX thesis template
+\def\headerfooterfont{\sffamily\small}
+\def\headerpagenumsep{\hspace{0.5em}|\hspace{0.5em}}
+\def\headersectionnumsep{\hspace{0.3em}-\hspace{0.3em}}
+
+%General reset
+\setheaderspaces{*}{1.6\onelineskip}{*}
+
+\makeevenfoot{plain}{}{}{}
+\makeoddfoot{plain}{}{}{}
+
+
+%Style for normal pages
+\makepagestyle{defaultruled}
+\makeheadrule{defaultruled}{\textwidth}{\normalrulethickness}
+\makeevenhead{defaultruled}{\headerfooterfont\thepage\headerpagenumsep\leftmark}{}{\headerfooterfont\rightmark\headersectionnumsep\thesection}
+\makeoddhead{defaultruled}{\headerfooterfont\thesection\headersectionnumsep\rightmark}{}{\headerfooterfont\leftmark\headerpagenumsep\thepage}
+\makeevenfoot{defaultruled}{}{}{}
+\makeoddfoot{defaultruled}{}{}{}
+\makepsmarks{defaultruled}{
+    \nouppercaseheads
+    \createmark{chapter}{both}{nonumber}{}{\space}
+    \createmark{section}{right}{nonumber}{}{\space}
+    \createplainmark{toc}{both}{\contentsname}
+    \createplainmark{lof}{both}{\listfigurename}
+    \createplainmark{lot}{both}{\listtablename}
+    \createplainmark{bib}{both}{\bibname}
+    \createplainmark{index}{both}{\indexname}
+    \createplainmark{glossary}{both}{\glossaryname}
+}
+
+%Style for chapter first pages
+\makepagestyle{defaultplain}
+\makeevenhead{defaultplain}{\headerfooterfont\thepage\headerpagenumsep}{}{}
+\makeoddhead{defaultplain}{}{}{\headerfooterfont\headerpagenumsep\thepage}
+\makeevenfoot{defaultplain}{}{}{}
+\makeoddfoot{defaultplain}{}{}{}
+
+%Apply styles
+\def\normalstyle{defaultruled}
+\def\plainstyle{defaultplain}
+
+\pagestyle{\normalstyle}
+\copypagestyle{cleared}{\normalstyle}
+\copypagestyle{chapter}{\plainstyle}
+
+%Ensures the plain style is used for all pages 
+% when a front matter chapter is longer than one page.
+\LetLtxMacro{\oldheaderfooterfrontmatter}{\frontmatter}
+\renewcommand*{\frontmatter}{\oldheaderfooterfrontmatter\pagestyle{\plainstyle}}
+
+%Switches back to the normal style for the main matter
+\LetLtxMacro{\oldheaderfootermainmatter}{\mainmatter}
+\renewcommand*{\mainmatter}{\oldheaderfootermainmatter\pagestyle{\normalstyle}}
+
+%Ensures the plain style is used for all pages 
+% when a back matter chapter is longer than one page.
+\LetLtxMacro{\oldheaderfooterbackmatter}{\backmatter}
+\renewcommand*{\backmatter}{\oldheaderfooterbackmatter\pagestyle{\plainstyle}}

@@ -1,0 +1,28 @@
+\setcounter{tocdepth}{2} %How far down to show content in ToC
+
+\renewcommand*{\cftchapterfont}{\large\bfseries\sffamily}
+\renewcommand*{\cftsectionfont}{\sffamily}
+\renewcommand*{\cftsubsectionfont}{\small\sffamily}
+\renewcommand*{\cftfigurefont}{\sffamily}
+\renewcommand*{\cfttablefont}{\sffamily}
+
+\renewcommand*{\cftchapterpagefont}{\large\bfseries\sffamily}
+\renewcommand*{\cftsectionpagefont}{\small\sffamily}
+\renewcommand*{\cftsubsectionpagefont}{\small\sffamily}
+\renewcommand*{\cftfigurepagefont}{\small\sffamily}
+\renewcommand*{\cfttablepagefont}{\small\sffamily}
+
+
+\def\printtableofcontents{{
+    %Locally reset link color for table of contents
+    \hypersetup{linkcolor=}
+    \tableofcontents
+}}
+
+\def\printlistoffigurestables{{%
+    %Locally reset link color for lists of things
+    \hypersetup{linkcolor=}
+
+    \listoffigures
+    \listoftables
+}}

@@ -1,0 +1,38 @@
+\lstset{
+    language=Python,
+    %
+    frame=tblr,
+    frameround=tttt,
+    %
+    numbers=left,
+    numbersep=1.3em,
+    %
+    breaklines=true,
+    breakatwhitespace=true,
+    postbreak=\mbox{\textcolor{grey-base}{$\hookrightarrow$}\space},
+    %
+    keepspaces=true,
+    showstringspaces=false,
+    showtabs=false,
+    columns=fixed,
+    tabsize=4,
+    %
+    extendedchars=true,
+    %
+    backgroundcolor=\color{white-pure},
+    rulecolor=\color{grey-light},
+    %
+    basicstyle=\footnotesize\ttfamily,
+    numberstyle=\scriptsize\color{grey-base}\ttfamily,
+    stringstyle=\color{orange},
+    commentstyle=\color{green!40!black},
+    keywordstyle=\color{blue!75!black}
+}
+
+%Implementation of red inline code. 
+% We want everything to be red though, and since this changes color we do not use it.
+% It also does not automatically line break the text.
+% We are using the "soul" package to highlight instead.
+%\makeatletter
+%\xpretocmd\lstinline{\Colorbox{white-near}\bgroup\color{red-dark}\vphantom{\ttfamily\char`\\y}\appto\lst@DeInit{\egroup}}{}{}
+%\makeatother

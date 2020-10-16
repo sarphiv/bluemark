@@ -1,0 +1,18 @@
+%Float defaults
+% Make figures float same position as in source code by default
+\floatplacement{figure}{H}
+\floatplacement{table}{H}
+
+
+%Caption styling
+\setlength{\belowcaptionskip}{0ex} %Move following text closer
+
+\DeclareCaptionLabelFormat{captionformat}{\footnotesize\sffamily\bfseries\color{blue-black}#1 #2}
+\DeclareCaptionLabelSeparator{captionformat}{\hspace{0.9em}}
+\DeclareCaptionTextFormat{captionformat}{\small\sffamily#1}
+
+\captionsetup{
+    labelformat=captionformat,
+    labelsep=captionformat,
+    textformat=captionformat
+}

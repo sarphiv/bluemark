@@ -1,0 +1,35 @@
+\fxloadlayouts{pdfcnote}
+\fxsetup{%
+    nomargin,
+    pdfcnote
+}
+
+
+\renewcommand\fixmelogo{}
+
+\def\printlistoffixmes{{%
+    \thispagestyle{empty}
+
+    %Locally reset link color for lists of fix mes
+    \hypersetup{linkcolor=}
+    \color{red-dark}
+
+    \listoffixmes
+}}
+
+
+\newcommand{\fxglobalnote}[1]{\fxnote[layout=index]{#1}}
+\newcommand{\fxglobalwarning}[1]{\fxwarning[layout=index]{#1}}
+\newcommand{\fxglobalerror}[1]{\fxerror[layout=index]{#1}}
+\newcommand{\fxglobalfatal}[1]{\fxfatal[layout=index]{#1}}
+
+
+\newcommand{\fxgraphicrectnote}[2][width=\textwidth]{\includegraphics[#1]{media/missing-graphic-rectangle.pdf}\fxnote{#2}}
+\newcommand{\fxgraphicrectwarning}[2][width=\textwidth]{\includegraphics[#1]{media/missing-graphic-rectangle.pdf}\fxwarning{#2}}
+\newcommand{\fxgraphicrecterror}[2][width=\textwidth]{\includegraphics[#1]{media/missing-graphic-rectangle.pdf}\fxerror{#2}}
+\newcommand{\fxgraphicrectfatal}[2][width=\textwidth]{\includegraphics[#1]{media/missing-graphic-rectangle.pdf}\fxfatal{#2}}
+
+\newcommand{\fxgraphicsqnote}[2][width=\textwidth]{\includegraphics[#1]{media/missing-graphic-square.pdf}\fxnote{#2}}
+\newcommand{\fxgraphicsqwarning}[2][width=\textwidth]{\includegraphics[#1]{media/missing-graphic-square.pdf}\fxwarning{#2}}
+\newcommand{\fxgraphicsqerror}[2][width=\textwidth]{\includegraphics[#1]{media/missing-graphic-square.pdf}\fxerror{#2}}
+\newcommand{\fxgraphicsqfatal}[2][width=\textwidth]{\includegraphics[#1]{media/missing-graphic-square.pdf}\fxfatal{#2}}

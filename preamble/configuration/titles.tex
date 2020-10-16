@@ -1,0 +1,57 @@
+\newcommand{\marginsecnumber}[1]{%
+  \makebox[0pt][r]{\textcolor{blue-dark}{#1}\hspace{0.6em}}%
+}
+
+%How far down to number sections
+%NOTE: Cannot set depth directly as \mainmatter resets depth
+\LetLtxMacro{\oldtitlesmainmatter}{\mainmatter}
+\renewcommand*{\mainmatter}{\oldtitlesmainmatter\setcounter{secnumdepth}{2}}
+
+
+%Doing chapter with memoir for consistency in some generated chapters
+\renewcommand*{\chaptitlefont}{\LARGE\bfseries\sffamily}
+\renewcommand*{\printchaptername}{}
+\renewcommand*{\chapternamenum}{}
+\renewcommand*{\printchapternum}{\LARGE\bfseries\sffamily\marginsecnumber\thechapter}
+\renewcommand*{\afterchapternum}{}
+\renewcommand*{\afterchaptertitle}{\vskip 0.6\onelineskip \hrule\vskip\onelineskip}
+%Fixes first chapter on a page vspace not being gobbled
+\renewcommand*{\chapterheadstart}{\vspace{\beforechapskip}}
+\titlespacing{\chapter}{0em}{4ex plus .4ex minus .2ex}{2.0ex}
+
+\titleformat{\section}
+    {\large\bfseries\sffamily}
+    {\marginsecnumber\thesection}
+    {0pt}
+    {}
+\titlespacing{\section}{0em}{1.4ex plus 0.3ex minus 0.2ex}{0ex}
+
+\titleformat{\subsection}
+    {\normalsize\bfseries\sffamily}
+    {\marginsecnumber\thesubsection}
+    {0pt}
+    {}
+\titlespacing{\subsection}{0em}{1.0ex plus 0.2ex minus 0.1ex}{0ex}
+
+\titleformat{\subsubsection}
+    {\normalsize\bfseries\itshape\color{grey-dark}\sffamily}
+    {\marginsecnumber\thesubsubsection}
+    {0pt}
+    {}
+\titlespacing{\subsubsection}{0em}{1.0ex plus 0.2ex minus 0.1ex}{0ex}
+
+\titleformat{\paragraph}[runin]
+    {\small\bfseries\itshape\color{grey-dark}\sffamily}
+    {\marginsecnumber\theparagraph}
+    {0pt}
+    {}
+%Last argument is right spacing in "runin" mode
+\titlespacing{\paragraph}{0em}{0.9ex plus 0.2ex minus 0.1ex}{1.2em}
+
+\titleformat{\subparagraph}[runin]
+    {\footnotesize\bfseries\itshape\color{grey-dark}\sffamily}
+    {\marginsecnumber\thesubparagraph}
+    {0pt}
+    {}
+%Last argument is right spacing in "runin" mode
+\titlespacing{\subparagraph}{1.6em}{0.3ex plus 0.1ex minus 0.1ex}{1.2em}
