@@ -5,8 +5,8 @@ and its structure is inspired by \rawref{Laursen's XeLaTeX thesis template}.
 It is not advised to use this template as this is literally sarphiv's first LaTeX project - a mess and major bugs should therefore be expected.
 
 \section{Section}
-If chapters such as the preface, colophon, and/or acknowledgments are unnecessary
-they can be commented out in \lstinline|main.tex|.
+If chapters such as the preface, colophon, and/or acknowledgments are necessary
+they can be uncommented in \lstinline|main.tex|.
 
 The headings above and below are examples of the different depths that have been defined.
 
@@ -169,10 +169,12 @@ The comment mark causes the new line character to be ignored.
 
 \label{label-example} %References the above subsection - not this exact place
 
-Sources\footcite[23]{DUMMY:1} can be cited with
+Sources %\footcite[23]{DUMMY:1}
+can be cited with
 \rawref{\textbackslash footcite[PPPP]\{XXXX\}}
 where \rawref{PPPP} is the optional page number in the source,
-and \rawref{XXXX} is the source key/label/ID\footcite[11]{DUMMY:2}.
+and \rawref{XXXX} is the source key/label/ID%\footcite[11]{DUMMY:2}
+.
 
 
 \subsection{References}
@@ -270,113 +272,6 @@ To create todo/(fix me) figures the right way, read \cref{fixmes-section}.
 Code examples and graphics can be used without figures.
 Although, figures help organize, reference, and describe media,
 so please use them.
-
-
-\subsection{Tikz}
-\begin{figure}
-    \centering
-    \begin{tikzpicture}
-        \draw [red-base, dashed] (-2.5, 2.5)
-            rectangle (-1.5, 0)
-            node [grey-dark, above] {hi there};
-        \draw [green-base, thick]
-            (0, 0)
-            to [out=-45, in=-180] (3, 0)
-            to [out=0, in=-80] (4, 2)
-            to [out=100, in=135] (0, 0);
-    \end{tikzpicture}
-
-    \caption{Picture drawn with tikz}
-    \label{tikz-example}
-\end{figure}
-
-Pictures can be drawn with the \rawref{tikz} package.
-To generate the above masterpiece \cref{tikz-example} the following code was used
-
-%Language can be specified as an optional argument.
-% A default language is specified in the preamble.
-\begin{lstlisting}[language=tex]
-\begin{figure}
-    \centering
-    \begin{tikzpicture}
-        \draw [red-base, dashed] (-2.5, 2.5)
-            rectangle (-1.5, 0)
-            node [grey-dark, above] {hi there};
-        \draw [green-base, thick]
-            (0, 0)
-            to [out=-45, in=-180] (3, 0)
-            to [out=0, in=-80] (4, 2)
-            to [out=100, in=135] (0, 0);
-    \end{tikzpicture}
-
-    \caption{Picture drawn with tikz
-\end{figure}
-\end{lstlisting}
-
-
-The \rawref{out} key describes the angle going \textit{out} of a point,
-such as in the example going out of $(0, 0)$
-The \rawref{in} key describes the angle going \textit{in} to a point,
-such as in the example going in to $(3, 0)$
-
-\subsection{Semantic tableau}
-\begin{figure}
-    \centering
-
-    \semantictableau{
-        [
-            \formula{\forall x (P(x) \lor Q(x))}{\T}{1}\\
-            \formula{\forall x P(x) \lor \forall x Q(x)}{\F}{2}
-            [
-                \formula{\forall x P(x)}{\F}{3}\\
-                \formula{\forall x Q(x)}{\F}{4}
-                ,expand={2}{\lorf}{left}
-                [
-                    \formulahl{P(c_0)}{\F}{}\\
-                    \formulahl{Q(c_1)}{\F}{}
-                    ,expand={3, 4}{\allf, \allf}{left}
-                    [
-                        \formula{P(x) \lor Q(x)}{\T}{5}\\
-                        \formula{P(c_0) \lor Q(c_0)}{\T}{6}\\
-                        \formula{P(c_1) \lor Q(c_1)}{\T}{7}
-                        ,expand={1}{\allt}{left}
-                        [
-                            \formula{P(x)}{\T}{}\\
-                            ,expand={5}{\lort}{left}
-                        ]
-                        [
-                            \formula{Q(x)}{\T}{}\\
-                            [
-                                \formulahl{P(c_0)}{\T}{}\\
-                                \closed
-                                ,expand={6}{\lort}{left}
-                            ]
-                            [
-                                \formula{Q(c_0)}{\T}{}
-                                [
-                                    \formula{P(c_1)}{\T}{}\\
-                                    \open
-                                    ,expand={7}{\lort}{left}
-                                ]
-                                [
-                                    \formulahl{Q(c_1)}{\T}{}\\
-                                    \closed
-                                ]
-                            ]
-                        ]
-                    ]
-                ]
-            ]
-        ]
-    }
-    
-    \caption{Semantic Tableau proving $\forall x (P(x) \lor Q(x)) \not\vdash_{ST} \forall x P(x) \lor \forall x Q(x)$}
-    \label{semantic-tableau-example}
-\end{figure}
-
-The code for the semantic tableau \cref{semantic-tableau-example} can be seen at \cref{code-semantic-tableau-example}.
-Remember the \rawref{=} sign after \rawref{,expand} and to have the correct amount of arguments. 
-Empty brackets \rawref{[]} are not allowed.
 
 
 \subsection{Tables}

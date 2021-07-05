@@ -41,64 +41,6 @@ It is referenced just like any other reference described in \cref{label-example}
 \end{lstlisting}    
 
 
-\section{Code for semantic tableau example}
-\label{code-semantic-tableau-example}
-\begin{lstlisting}
-\begin{figure}
-    \centering
-
-    \semantictableau{
-        [
-            \formula{\forall x (P(x) \lor Q(x))}{\T}{1}\\
-            \formula{\forall x P(x) \lor \forall x Q(x)}{\F}{2}
-            [
-                \formula{\forall x P(x)}{\F}{3}\\
-                \formula{\forall x Q(x)}{\F}{4}
-                ,expand={2}{\lorf}{left}
-                [
-                    \formulahl{P(c_0)}{\F}{}\\
-                    \formulahl{Q(c_1)}{\F}{}
-                    ,expand={3, 4}{\allf, \allf}{left}
-                    [
-                        \formula{P(x) \lor Q(x)}{\T}{5}\\
-                        \formula{P(c_0) \lor Q(c_0)}{\T}{6}\\
-                        \formula{P(c_1) \lor Q(c_1)}{\T}{7}
-                        ,expand={1}{\allt}{left}
-                        [
-                            \formula{P(x)}{\T}{}\\
-                            ,expand={5}{\lort}{left}
-                        ]
-                        [
-                            \formula{Q(x)}{\T}{}\\
-                            [
-                                \formulahl{P(c_0)}{\T}{}\\
-                                \closed
-                                ,expand={6}{\lort}{left}
-                            ]
-                            [
-                                \formula{Q(c_0)}{\T}{}
-                                [
-                                    \formula{P(c_1)}{\T}{}\\
-                                    \open
-                                    ,expand={7}{\lort}{left}
-                                ]
-                                [
-                                    \formulahl{Q(c_1)}{\T}{}\\
-                                    \closed
-                                ]
-                            ]
-                        ]
-                    ]
-                ]
-            ]
-        ]
-    }
-    
-    \caption{Semantic Tableau proving $\forall x (P(x) \lor Q(x)) \not\vdash_{ST} \forall x P(x) \lor \forall x Q(x)$}
-    \label{semantic-tableau-example}
-\end{figure}
-\end{lstlisting}
-
 \section{Code for small table example}
 \label{code-small-table-example}
 

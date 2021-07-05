@@ -11,5 +11,4 @@ Please note that links do not work in the GitHub PDF viewer (as of 2020-10-16) -
 Alternatively compile the document to `render/main.pdf` to read the instructions.
 
 ## Requirements
-- LuaLaTeX 
 - Packages listed in [`preamble/packages.tex`](preamble/packages.tex).
