@@ -195,11 +195,14 @@ the brackets can be specified literally.
 
 \begin{highlightbox*}{Highlighted box}
     Highlight boxes are also supported and can be accessed via the two environments
-    \rawref{highlightbox} and \rawref{highlightbox*}.
+    \rawref{highlightbox} and \rawref{highlightbox*}. 
 
-    The asterisk version requires a title argument e.g.
+    The asterisk version requires a title argument e.g.\\
     \rawref{\textbackslash begin\{highlightbox*\}\{XXXX\}}
     where \rawref{XXXX} is the title of the box.
+
+    An optional argument controlling color can be specified with\\
+    \rawref{\textbackslash begin\{highlightbox*\}[YYYY]\{XXXX\}} where \rawref{YYYY} is e.g. \rawref{red-dark}.
 \end{highlightbox*}
 
 The highlight boxes can also be used to highlight equations.
