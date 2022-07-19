@@ -1,0 +1,44 @@
+% From: https://tex.stackexchange.com/a/554381
+% Author: egreg
+% Date: 2022-07-19
+% \ExplSyntaxOn
+\ExplSyntaxOn
+
+
+\NewDocumentCommand{\zip}{oomm +m}
+ {
+  \IfNoValueTF { #1 }
+   { \iagolito_zip_simple:oon { #3 } { #4 } { #5 } }
+   { \iagolito_zip_full:nnoon { #1 } { #2 } { #3 } { #4 } { #5 } }
+ }
+
+\seq_new:N \l__iagolito_zip_a_seq
+\seq_new:N \l__iagolito_zip_b_seq
+\seq_new:N \l__iagolito_zip_c_seq
+
+\cs_new_protected:Nn \iagolito_zip_simple:nnn
+ {
+  \seq_set_from_clist:Nn \l__iagolito_zip_a_seq { #1 }
+  \seq_set_from_clist:Nn \l__iagolito_zip_b_seq { #2 }
+  \cs_set:Nn \__iagolito_zip:nn { #3 }
+  \seq_mapthread_function:NNN \l__iagolito_zip_a_seq \l__iagolito_zip_b_seq \__iagolito_zip:nn
+ }
+\cs_generate_variant:Nn \iagolito_zip_simple:nnn { oo }
+
+\cs_new_protected:Nn \iagolito_zip_full:nnnnn
+ {
+  \seq_set_from_clist:Nn \l__iagolito_zip_a_seq { #3 }
+  \seq_set_from_clist:Nn \l__iagolito_zip_b_seq { #4 }
+  \seq_clear:N \l__iagolito_zip_c_seq
+  \cs_set:Npn \__iagolito_zip_process:w #1 \q_stop #2 \q_stop { #5 }
+  \seq_mapthread_function:NNN \l__iagolito_zip_a_seq \l__iagolito_zip_b_seq \__iagolito_merge:nn
+  \seq_map_inline:Nn \l__iagolito_zip_c_seq { ##1 }
+ }
+\cs_generate_variant:Nn \iagolito_zip_full:nnnnn { nnoo }
+
+\cs_new_protected:Nn \__iagolito_merge:nn
+ {
+  \seq_put_right:Nn \l__iagolito_zip_c_seq { \__iagolito_zip_process:w #1 \q_stop #2 \q_stop }
+ }
+
+\ExplSyntaxOff

@@ -19,13 +19,15 @@
     
         \vspace*{\fill}
         \vspace*{0ex}
-    
-        \Large
-        \thepaperauthor\quad
-        \small\color{grey-dark}
-        \thepaperauthorid
 
-        \vspace*{8ex}
+        \zip{\thepaperauthors}{\thepaperauthorids}{%
+            \Large\color{black-pure}%
+            #1\\
+            \scriptsize\color{grey-dark}%
+            #2\\
+        }
+
+        \vspace*{9ex}
 
         \begin{minipage}{0.7\textwidth}
             \small\bfseries\color{black-pure}
